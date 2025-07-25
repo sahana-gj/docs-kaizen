@@ -1,8 +1,10 @@
 import { NavLink, useLocation } from "react-router-dom";
-import { ChevronRight, ChevronDown, BookOpen, Code, Settings, FileText } from "lucide-react";
+import { ChevronRight, ChevronDown, BookOpen, Code, Settings, FileText, Search, X, Menu } from "lucide-react";
 import { useState, useEffect } from "react";
-import { blogCategories } from "@/data/blog-posts";
+import { blogCategories, blogPosts } from "@/data/blog-posts";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 const categoryIcons = {
   "getting-started": BookOpen,
@@ -10,17 +12,42 @@ const categoryIcons = {
   "api-reference": Code
 } as const;
 
-export function BlogSidebar() {
+interface BlogSidebarProps {
+  isOpen?: boolean;
+  onClose?: () => void;
+  className?: string;
+}
+
+export function BlogSidebar({ isOpen = true, onClose, className }: BlogSidebarProps) {
   const location = useLocation();
   const [expandedCategories, setExpandedCategories] = useState<string[]>([
     "getting-started" // Default to expanded
   ]);
   const [isRouterReady, setIsRouterReady] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredResults, setFilteredResults] = useState<any[]>([]);
 
   useEffect(() => {
     // Ensure router is ready before rendering NavLinks
     setIsRouterReady(true);
   }, []);
+
+  useEffect(() => {
+    if (searchQuery.trim()) {
+      const results: any[] = [];
+      Object.values(blogPosts).forEach((post) => {
+        if (
+          post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          post.content.toLowerCase().includes(searchQuery.toLowerCase())
+        ) {
+          results.push(post);
+        }
+      });
+      setFilteredResults(results);
+    } else {
+      setFilteredResults([]);
+    }
+  }, [searchQuery]);
 
   const toggleCategory = (categoryId: string) => {
     setExpandedCategories(prev => 
@@ -30,13 +57,35 @@ export function BlogSidebar() {
     );
   };
 
+  const handleSearchResultClick = () => {
+    if (onClose) onClose();
+  };
+
   if (!isRouterReady) {
     return (
-      <div className="w-64 bg-docs-nav border-r border-docs-border h-screen overflow-y-auto sticky top-0">
+      <div className={cn(
+        "w-64 bg-docs-nav border-r border-docs-border h-screen overflow-y-auto",
+        "md:sticky md:top-0",
+        "fixed top-0 left-0 z-50 transform transition-transform duration-300 ease-in-out",
+        isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0",
+        className
+      )}>
         <div className="p-6">
-          <div className="flex items-center gap-2 mb-8">
-            <Settings className="h-6 w-6 text-docs-nav-active" />
-            <h1 className="text-xl font-bold text-docs-nav-foreground">Documentation</h1>
+          <div className="flex items-center justify-between mb-8">
+            <div className="flex items-center gap-2">
+              <Settings className="h-6 w-6 text-docs-nav-active" />
+              <h1 className="text-xl font-bold text-docs-nav-foreground">Documentation</h1>
+            </div>
+            {onClose && (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={onClose}
+                className="md:hidden text-docs-nav-foreground hover:bg-accent"
+              >
+                <X className="h-4 w-4" />
+              </Button>
+            )}
           </div>
           <div className="text-docs-nav-foreground">Loading...</div>
         </div>
@@ -45,13 +94,72 @@ export function BlogSidebar() {
   }
 
   return (
-    <div className="w-64 bg-docs-nav border-r border-docs-border h-screen overflow-y-auto sticky top-0">
+    <div className={cn(
+      "w-64 bg-docs-nav border-r border-docs-border h-screen overflow-y-auto",
+      "md:sticky md:top-0",
+      "fixed top-0 left-0 z-50 transform transition-transform duration-300 ease-in-out",
+      isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0",
+      className
+    )}>
       <div className="p-6">
-        <div className="flex items-center gap-2 mb-8">
-          <Settings className="h-6 w-6 text-docs-nav-active" />
-          <h1 className="text-xl font-bold text-docs-nav-foreground">Documentation</h1>
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center gap-2">
+            <Settings className="h-6 w-6 text-docs-nav-active" />
+            <h1 className="text-xl font-bold text-docs-nav-foreground">Documentation</h1>
+          </div>
+          {onClose && (
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={onClose}
+              className="md:hidden text-docs-nav-foreground hover:bg-accent"
+            >
+              <X className="h-4 w-4" />
+            </Button>
+          )}
         </div>
 
+        {/* Search Box */}
+        <div className="relative mb-6">
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-docs-nav-foreground" />
+          <Input
+            type="text"
+            placeholder="Search documentation..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="pl-10 bg-background border-docs-border text-docs-nav-foreground placeholder:text-docs-toc-foreground"
+          />
+        </div>
+
+        {/* Search Results */}
+        {searchQuery.trim() && (
+          <div className="mb-6">
+            <h3 className="text-sm font-semibold text-docs-nav-foreground mb-3">
+              Search Results ({filteredResults.length})
+            </h3>
+            {filteredResults.length > 0 ? (
+              <div className="space-y-1">
+                {filteredResults.map((post) => (
+                  <NavLink
+                    key={post.id}
+                    to={`/${post.id}`}
+                    onClick={handleSearchResultClick}
+                    className="block px-3 py-2 text-sm rounded-lg transition-colors text-docs-nav-foreground hover:bg-accent"
+                  >
+                    <div className="font-medium">{post.title}</div>
+                    <div className="text-xs text-docs-toc-foreground capitalize">
+                      {post.category.replace('-', ' ')}
+                    </div>
+                  </NavLink>
+                ))}
+              </div>
+            ) : (
+              <div className="text-sm text-docs-toc-foreground">No results found</div>
+            )}
+          </div>
+        )}
+
+        {/* Navigation */}
         <nav className="space-y-2">
           {blogCategories.map((category) => {
             const Icon = categoryIcons[category.id as keyof typeof categoryIcons];
@@ -88,6 +196,7 @@ export function BlogSidebar() {
                         <NavLink
                           key={postId}
                           to={targetPath}
+                          onClick={handleSearchResultClick}
                           className={cn(
                             "block px-3 py-2 text-sm rounded-lg transition-colors",
                             isActive

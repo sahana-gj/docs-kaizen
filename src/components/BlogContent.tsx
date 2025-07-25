@@ -21,8 +21,8 @@ export function BlogContent({ post }: BlogContentProps) {
   }, [post]);
 
   return (
-    <div className="flex-1 max-w-4xl mx-auto px-8 py-8">
-      <div className="prose prose-lg max-w-none">
+    <div className="flex-1 max-w-4xl mx-auto px-4 md:px-8 py-4 md:py-8 overflow-y-auto">
+      <div className="prose prose-sm md:prose-lg max-w-none">
         <ReactMarkdown
           components={{
             code({ node, inline, className, children, ...props }: any) {
