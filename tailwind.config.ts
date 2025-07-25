@@ -61,7 +61,14 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+				'docs-nav': 'hsl(var(--docs-nav))',
+				'docs-nav-foreground': 'hsl(var(--docs-nav-foreground))',
+				'docs-nav-active': 'hsl(var(--docs-nav-active))',
+				'docs-nav-active-foreground': 'hsl(var(--docs-nav-active-foreground))',
+				'docs-toc': 'hsl(var(--docs-toc))',
+				'docs-toc-foreground': 'hsl(var(--docs-toc-foreground))',
+				'docs-border': 'hsl(var(--docs-border))'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
