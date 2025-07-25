@@ -1,6 +1,6 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { ChevronRight, ChevronDown, BookOpen, Code, Settings, FileText } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { blogCategories } from "@/data/blog-posts";
 import { cn } from "@/lib/utils";
 
@@ -8,12 +8,19 @@ const categoryIcons = {
   "getting-started": BookOpen,
   "tutorials": FileText,
   "api-reference": Code
-};
+} as const;
 
 export function BlogSidebar() {
+  const location = useLocation();
   const [expandedCategories, setExpandedCategories] = useState<string[]>([
     "getting-started" // Default to expanded
   ]);
+  const [isRouterReady, setIsRouterReady] = useState(false);
+
+  useEffect(() => {
+    // Ensure router is ready before rendering NavLinks
+    setIsRouterReady(true);
+  }, []);
 
   const toggleCategory = (categoryId: string) => {
     setExpandedCategories(prev => 
@@ -22,6 +29,20 @@ export function BlogSidebar() {
         : [...prev, categoryId]
     );
   };
+
+  if (!isRouterReady) {
+    return (
+      <div className="w-64 bg-docs-nav border-r border-docs-border h-screen overflow-y-auto sticky top-0">
+        <div className="p-6">
+          <div className="flex items-center gap-2 mb-8">
+            <Settings className="h-6 w-6 text-docs-nav-active" />
+            <h1 className="text-xl font-bold text-docs-nav-foreground">Documentation</h1>
+          </div>
+          <div className="text-docs-nav-foreground">Loading...</div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="w-64 bg-docs-nav border-r border-docs-border h-screen overflow-y-auto sticky top-0">
@@ -58,24 +79,28 @@ export function BlogSidebar() {
 
                 {isExpanded && (
                   <div className="ml-6 space-y-1">
-                    {category.posts.map((postId) => (
-                      <NavLink
-                        key={postId}
-                        to={`/${postId}`}
-                        className={({ isActive }) =>
-                          cn(
+                    {category.posts.map((postId) => {
+                      const currentPath = location?.pathname || "/";
+                      const targetPath = `/${postId}`;
+                      const isActive = currentPath === targetPath || (currentPath === "/" && postId === "introduction");
+                      
+                      return (
+                        <NavLink
+                          key={postId}
+                          to={targetPath}
+                          className={cn(
                             "block px-3 py-2 text-sm rounded-lg transition-colors",
                             isActive
                               ? "bg-docs-nav-active text-docs-nav-active-foreground font-medium"
                               : "text-docs-nav-foreground hover:bg-accent"
-                          )
-                        }
-                      >
-                        {postId.split('-').map(word => 
-                          word.charAt(0).toUpperCase() + word.slice(1)
-                        ).join(' ')}
-                      </NavLink>
-                    ))}
+                          )}
+                        >
+                          {postId.split('-').map(word => 
+                            word.charAt(0).toUpperCase() + word.slice(1)
+                          ).join(' ')}
+                        </NavLink>
+                      );
+                    })}
                   </div>
                 )}
               </div>
