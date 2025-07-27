@@ -21,8 +21,12 @@ export const blogCategories = [
     id: "api-reference",
     title: "Powershell",
     posts: ["authentication", "endpoints", "webhooks"]
+  },
+ {
+    id: "tutorials",
+    title: "Group Policy",
+    posts: ["authentication", "endpoints", "webhooks"]
   }
- 
 ];
 
 export const blogPosts: Record<string, BlogPost> = {
