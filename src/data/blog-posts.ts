@@ -9,19 +9,20 @@ export interface BlogPost {
 export const blogCategories = [
   {
     id: "getting-started",
-    title: "Getting Started",
+    title: "Active Directory",
     posts: ["introduction", "quick-start", "installation"]
   },
   {
     id: "tutorials",
-    title: "Tutorials",
+    title: "Azure Entra",
     posts: ["first-app", "advanced-concepts", "best-practices"]
   },
   {
     id: "api-reference",
-    title: "API Reference",
+    title: "Powershell",
     posts: ["authentication", "endpoints", "webhooks"]
   }
+ 
 ];
 
 export const blogPosts: Record<string, BlogPost> = {
@@ -45,7 +46,7 @@ Our platform is a modern solution designed to help developers build amazing appl
 - **Developer Friendly**: Intuitive APIs and excellent documentation
 - **Secure by Default**: Security best practices built-in
 
-## Getting Started
+## Active Directory
 
 To begin your journey with our platform, you'll need to:
 
@@ -68,11 +69,13 @@ Ready to dive in? Check out our [Quick Start Guide](/quick-start) to build your 
     headings: [
       { id: "what-is-our-platform", text: "What is Our Platform?", level: 2 },
       { id: "key-features", text: "Key Features", level: 3 },
-      { id: "getting-started", text: "Getting Started", level: 2 },
+      { id: "getting-started", text: "Active Directory", level: 2 },
       { id: "prerequisites", text: "Prerequisites", level: 3 },
       { id: "next-steps", text: "Next Steps", level: 2 }
     ]
   },
+
+
   "quick-start": {
     id: "quick-start",
     title: "Quick Start Guide",
@@ -149,6 +152,8 @@ Now that you have a working application, explore our tutorials to learn more adv
       { id: "whats-next", text: "What's Next?", level: 2 }
     ]
   },
+
+
   installation: {
     id: "installation",
     title: "Installation Guide",
@@ -260,6 +265,9 @@ This will guide you through the initial setup process.
       { id: "configuration", text: "Configuration", level: 2 }
     ]
   },
+
+
+
   "first-app": {
     id: "first-app",
     title: "Building Your First App",
@@ -968,7 +976,7 @@ Learn how to authenticate users and secure your API requests.
 
 Our platform uses JWT (JSON Web Tokens) for authentication. This provides a secure and stateless way to authenticate users across your application.
 
-## Getting Started
+## Active Directory
 
 ### API Keys
 
@@ -1678,6 +1686,8 @@ $projects = $client->projects->list();
       { id: "php", text: "PHP", level: 3 }
     ]
   },
+
+
   webhooks: {
     id: "webhooks",
     title: "Webhooks",
