@@ -75,7 +75,7 @@ export function BlogSidebar({ isOpen = true, onClose, className }: BlogSidebarPr
           <div className="flex items-center justify-between mb-8">
             <div className="flex items-center gap-2">
               <Settings className="h-6 w-6 text-docs-nav-active" />
-              <h1 className="text-xl font-bold text-docs-nav-foreground">Documentation</h1>
+              <h1 className="text-xl font-bold text-docs-nav-foreground">Tech-docs</h1>
             </div>
             {onClose && (
               <Button
@@ -106,7 +106,7 @@ export function BlogSidebar({ isOpen = true, onClose, className }: BlogSidebarPr
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-2">
             <Settings className="h-6 w-6 text-docs-nav-active" />
-            <h1 className="text-xl font-bold text-docs-nav-foreground">Documentation</h1>
+            <h1 className="text-xl font-bold text-docs-nav-foreground">Tech-docs</h1>
           </div>
           <div className="flex items-center gap-2">
             <div className="hidden lg:block">
