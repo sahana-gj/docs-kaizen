@@ -1,73 +1,33 @@
-# Welcome to your Lovable project
+# 👋 Welcome to My Blog
 
-## Project info
+I'm **Prabu Ponnan**, an Active Directory Specialist with 10+ years of experience in identity management, automation, and infrastructure delivery across global enterprises.
 
-**URL**: https://lovable.dev/projects/bf9578b9-c9db-4050-8584-a69825b03efe
+This blog is a space where I share **technical insights, scripts, and learnings** focused on:
 
-## How can I edit this code?
+- 🛡️ Active Directory (on-prem and hybrid)
+- 🔐 ADFS, PKI, Entra (Azure AD) Connect
+- ⚙️ PowerShell scripting & automation
+- 📊 AD health checks, onboarding tools, and factory rollouts
 
-There are several ways of editing your application.
+---
 
-**Use Lovable**
+## 🧠 What You'll Find Here
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/bf9578b9-c9db-4050-8584-a69825b03efe) and start prompting.
+- 📝 **Blog posts** sharing technical guides and how-to tutorials  
+- 📁 **PowerShell scripts** used in real-world projects  
+- 🧰 **Tips** for AD assessments, deployments, and disaster recovery  
 
-Changes made via Lovable will be committed automatically to this repo.
 
-**Use your preferred IDE**
+---
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## 🚀 Skills Snapshot
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- **Identity & Access**: Active Directory, ADFS, Entra Connect  
+- **Automation**: PowerShell (advanced), Ansible (basic)  
+- **Infrastructure**: DNS, GPOs, Windows Server 2016–2022  
+- **Documentation**: GitHub-based SOPs, HLDs, compliance reports
 
-Follow these steps:
+---
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/bf9578b9-c9db-4050-8584-a69825b03efe) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+Thanks for visiting!  
+If this content helps you, feel free to [connect with me on LinkedIn](https://www.linkedin.com/in/prabu-ponnan-ab4803b0/)
