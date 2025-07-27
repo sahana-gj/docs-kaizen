@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Menu, Search } from "lucide-react";
 import { useState } from "react";
+import { ThemeToggle } from "./ThemeToggle";
 
 interface MobileHeaderProps {
   onMenuClick: () => void;
@@ -23,6 +24,7 @@ export function MobileHeader({ onMenuClick, title = "Documentation" }: MobileHea
           {title}
         </h1>
       </div>
+      <ThemeToggle />
     </header>
   );
 }

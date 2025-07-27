@@ -5,6 +5,7 @@ import { blogCategories, blogPosts } from "@/data/blog-posts";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { ThemeToggle } from "./ThemeToggle";
 
 const categoryIcons = {
   "getting-started": BookOpen,
@@ -107,16 +108,21 @@ export function BlogSidebar({ isOpen = true, onClose, className }: BlogSidebarPr
             <Settings className="h-6 w-6 text-docs-nav-active" />
             <h1 className="text-xl font-bold text-docs-nav-foreground">Documentation</h1>
           </div>
-          {onClose && (
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={onClose}
-              className="md:hidden text-docs-nav-foreground hover:bg-accent"
-            >
-              <X className="h-4 w-4" />
-            </Button>
-          )}
+          <div className="flex items-center gap-2">
+            <div className="hidden lg:block">
+              <ThemeToggle />
+            </div>
+            {onClose && (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={onClose}
+                className="md:hidden text-docs-nav-foreground hover:bg-accent"
+              >
+                <X className="h-4 w-4" />
+              </Button>
+            )}
+          </div>
         </div>
 
         {/* Search Box */}
