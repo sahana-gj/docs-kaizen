@@ -12,7 +12,7 @@ export function BlogLayout() {
   const [isMobile, setIsMobile] = useState(false);
   
   console.log("BlogLayout rendering with postId:", postId);
-  const post = postId ? blogPosts[postId] : blogPosts.introduction;
+  const post = postId ? blogPosts[postId] : blogPosts["ad-intro"];
   console.log("Selected post:", post?.title);
 
   useEffect(() => {
