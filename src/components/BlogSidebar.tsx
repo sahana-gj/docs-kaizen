@@ -1,5 +1,5 @@
 import { NavLink, useLocation } from "react-router-dom";
-import { ChevronRight, ChevronDown, BookOpen, Code, Settings, FileText, Search, X, Menu } from "lucide-react";
+import { ChevronRight, ChevronDown, BookOpen, Code, Settings, FileText, Search, X, Menu, Shield, Terminal, FolderCog, Smartphone } from "lucide-react";
 import { useState, useEffect } from "react";
 import { blogCategories, blogPosts } from "@/data/blog-posts";
 import { cn } from "@/lib/utils";
@@ -8,9 +8,11 @@ import { Input } from "@/components/ui/input";
 import { ThemeToggle } from "./ThemeToggle";
 
 const categoryIcons = {
-  "getting-started": BookOpen,
-  "tutorials": FileText,
-  "api-reference": Code
+  "activedirectory": Shield,
+  "entra": Settings,
+  "powershell": Terminal,
+  "grouppolicy": FolderCog,
+  "intune": Smartphone
 } as const;
 
 interface BlogSidebarProps {
@@ -22,7 +24,7 @@ interface BlogSidebarProps {
 export function BlogSidebar({ isOpen = true, onClose, className }: BlogSidebarProps) {
   const location = useLocation();
   const [expandedCategories, setExpandedCategories] = useState<string[]>([
-    "getting-started" // Default to expanded
+    "activedirectory" // Default to expanded
   ]);
   const [isRouterReady, setIsRouterReady] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
