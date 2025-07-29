@@ -1,6 +1,7 @@
 // Import all blog posts from category folders
 import { adIntro } from './activedirectory/ad-intro';
 import { adDomain } from './activedirectory/ad-domain';
+import { adSchema } from './activedirectory/ad-schema';
 import { entraIntro } from './entra/entra-intro';
 import { psIntro } from './powershell/ps-intro';
 import { gpIntro } from './grouppolicy/gp-intro';
@@ -18,7 +19,7 @@ export const blogCategories = [
   {
     id: "activedirectory",
     title: "Active Directory",
-    posts: ["ad-intro", "ad-domain"]
+    posts: ["ad-intro", "ad-domain", "ad-schema"]
   },
   {
     id: "entra",
@@ -46,6 +47,7 @@ export const blogPosts: Record<string, BlogPost> = {
   // Active Directory posts
   "ad-intro": adIntro,
   "ad-domain": adDomain,
+  "ad-schema": adSchema,
   
   // Entra ID posts
   "entra-intro": entraIntro,
